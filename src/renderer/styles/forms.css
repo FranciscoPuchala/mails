@@ -1,0 +1,146 @@
+/* Form fields */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.field__label {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+}
+
+.field__hint,
+.field__error {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.field__error {
+  display: none;
+  color: var(--color-danger);
+}
+
+.field.is-invalid .field__error {
+  display: block;
+}
+
+.input,
+.textarea,
+.select {
+  width: 100%;
+  min-height: var(--control-height);
+  padding: 0 var(--space-3);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.textarea {
+  padding: var(--space-2) var(--space-3);
+  resize: vertical;
+  line-height: var(--line-height);
+}
+
+.textarea--tall {
+  min-height: 280px;
+}
+
+/* Suggestions from <datalist> still show while typing; only the arrow is hidden. */
+.input::-webkit-calendar-picker-indicator {
+  display: none !important;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--color-text-subtle);
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-focus-ring);
+}
+
+.field.is-invalid .input,
+.field.is-invalid .textarea {
+  border-color: var(--color-danger);
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.field-grid--3 {
+  grid-template-columns: 2fr 1fr 1fr;
+}
+
+.field--full {
+  grid-column: 1 / -1;
+}
+
+/* Search box */
+.search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search .icon {
+  position: absolute;
+  left: var(--space-3);
+  color: var(--color-text-subtle);
+  pointer-events: none;
+}
+
+.search .input {
+  padding-left: 34px;
+}
+
+/* Segmented control (radio group) */
+.segmented {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 3px;
+  gap: 2px;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-active);
+}
+
+.segmented__option {
+  position: relative;
+}
+
+.segmented__option input {
+  position: absolute;
+  opacity: 0;
+}
+
+.segmented__option span {
+  display: block;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+
+.segmented__option input:checked + span {
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: var(--shadow-sm);
+}
+
+.segmented__option input:focus-visible + span {
+  outline: 2px solid var(--color-focus-ring);
+}

@@ -1,0 +1,80 @@
+/* Icons are external SVG files used as masks, so they inherit currentColor. */
+.icon {
+  display: inline-block;
+  flex: none;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  background-color: currentColor;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
+
+.icon--lg {
+  width: var(--icon-size-lg);
+  height: var(--icon-size-lg);
+}
+
+.icon--xl {
+  width: 40px;
+  height: 40px;
+}
+
+.icon--logo {
+  mask-image: url('../../../assets/icons/logo.svg');
+}
+.icon--send {
+  mask-image: url('../../../assets/icons/send.svg');
+}
+.icon--templates {
+  mask-image: url('../../../assets/icons/templates.svg');
+}
+.icon--history {
+  mask-image: url('../../../assets/icons/history.svg');
+}
+.icon--settings {
+  mask-image: url('../../../assets/icons/settings.svg');
+}
+.icon--plus {
+  mask-image: url('../../../assets/icons/plus.svg');
+}
+.icon--search {
+  mask-image: url('../../../assets/icons/search.svg');
+}
+.icon--copy {
+  mask-image: url('../../../assets/icons/copy.svg');
+}
+.icon--trash {
+  mask-image: url('../../../assets/icons/trash.svg');
+}
+.icon--resend {
+  mask-image: url('../../../assets/icons/resend.svg');
+}
+.icon--close {
+  mask-image: url('../../../assets/icons/close.svg');
+}
+.icon--success {
+  mask-image: url('../../../assets/icons/success.svg');
+}
+.icon--error {
+  mask-image: url('../../../assets/icons/error.svg');
+}
+.icon--info {
+  mask-image: url('../../../assets/icons/info.svg');
+}
+.icon--warning {
+  mask-image: url('../../../assets/icons/warning.svg');
+}
+.icon--inbox {
+  mask-image: url('../../../assets/icons/inbox.svg');
+}
+.icon--spinner {
+  mask-image: url('../../../assets/icons/spinner.svg');
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

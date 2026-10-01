@@ -1,0 +1,126 @@
+<section class="view" data-view="templates" aria-labelledby="templates-title" hidden>
+  <header class="view__header">
+    <div>
+      <h1 id="templates-title">Plantillas</h1>
+      <p class="view__subtitle">Tus mails reutilizables, listos para enviar</p>
+    </div>
+    <div class="view__actions">
+      <button class="btn btn--primary" id="templates-new" type="button">
+        <span class="icon icon--plus"></span>Nueva plantilla
+      </button>
+    </div>
+  </header>
+
+  <div class="view__body view__body--flush">
+    <div class="split">
+      <div class="split__list">
+        <div class="list-toolbar">
+          <label class="search">
+            <span class="icon icon--search"></span>
+            <span class="visually-hidden">Buscar plantilla</span>
+            <input
+              class="input"
+              id="templates-search"
+              type="search"
+              placeholder="Buscar plantilla"
+            />
+          </label>
+        </div>
+        <ul class="template-list" id="templates-list" aria-label="Plantillas"></ul>
+        <p class="empty empty--compact" id="templates-list-empty" hidden>
+          Ninguna plantilla coincide
+        </p>
+      </div>
+
+      <div class="split__detail">
+        <div class="empty" id="templates-empty" hidden>
+          <span class="icon icon--xl icon--inbox"></span>
+          <p class="empty__title">Todavía no tenés plantillas</p>
+          <p>Creá la primera. Podés usar variables como {{nombre}} para personalizar cada envío.</p>
+          <button class="btn btn--primary" id="templates-create-first" type="button">
+            <span class="icon icon--plus"></span>Crear la primera
+          </button>
+        </div>
+
+        <form class="stack" id="template-form" novalidate hidden>
+          <div class="row">
+            <h2 id="template-form-title">Nueva plantilla</h2>
+            <span class="unsaved" id="template-unsaved" hidden>Sin guardar</span>
+            <span class="spacer"></span>
+            <button
+              class="btn btn--ghost btn--icon"
+              id="template-duplicate"
+              type="button"
+              title="Duplicar"
+              aria-label="Duplicar plantilla"
+            >
+              <span class="icon icon--copy"></span>
+            </button>
+            <button
+              class="btn btn--ghost btn--icon btn--danger"
+              id="template-delete"
+              type="button"
+              title="Eliminar"
+              aria-label="Eliminar plantilla"
+            >
+              <span class="icon icon--trash"></span>
+            </button>
+          </div>
+
+          <div class="card">
+            <div class="field" data-field="name">
+              <label class="field__label" for="template-name">Nombre interno</label>
+              <input
+                class="input"
+                id="template-name"
+                type="text"
+                maxlength="120"
+                placeholder="Ej.: Seguimiento de presupuesto"
+              />
+              <p class="field__error">Poné un nombre para identificarla.</p>
+            </div>
+
+            <div class="field" data-field="subject">
+              <label class="field__label" for="template-subject">Asunto</label>
+              <input
+                class="input"
+                id="template-subject"
+                type="text"
+                maxlength="300"
+                placeholder="Ej.: Hola {{nombre}}, te paso el presupuesto"
+              />
+              <p class="field__error">El asunto no puede estar vacío.</p>
+            </div>
+
+            <div class="field" data-field="body">
+              <label class="field__label" for="template-body">Cuerpo</label>
+              <textarea
+                class="textarea textarea--tall"
+                id="template-body"
+                maxlength="50000"
+                placeholder="Hola {{nombre}},&#10;&#10;..."
+              ></textarea>
+              <p class="field__error">El cuerpo no puede estar vacío.</p>
+            </div>
+
+            <div class="field">
+              <span class="field__label">Variables detectadas</span>
+              <div class="chips" id="template-variables"></div>
+              <p class="field__hint" id="template-variables-hint">
+                Escribí {{variable}} en el asunto o el cuerpo para personalizar. {{fecha}} se
+                completa sola con la fecha de hoy.
+              </p>
+            </div>
+          </div>
+
+          <div class="row row--end">
+            <span class="text-muted shortcut-hint"
+              ><kbd data-mod-key>Ctrl</kbd> + <kbd>S</kbd></span
+            >
+            <button class="btn btn--primary" id="template-save" type="submit">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

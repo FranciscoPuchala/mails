@@ -1,0 +1,26 @@
+appId: com.franciscopuchala.mailrapido
+productName: MailRapido
+copyright: Copyright © 2026 Francisco Puchala
+
+directories:
+  output: dist
+  buildResources: assets
+
+files:
+  - package.json
+  - src/**/*
+  - assets/**/*
+
+win:
+  target: nsis
+  icon: assets/icon.png
+
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  artifactName: ${productName}-Setup-${version}.${ext}
+
+mac:
+  target: dmg
+  category: public.app-category.productivity
+  icon: assets/icon.png

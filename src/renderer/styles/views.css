@@ -1,0 +1,242 @@
+/* Template list (shared by Send and Templates) */
+.list-toolbar {
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.template-list {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: var(--space-2);
+}
+
+.template-item {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  border: 0;
+  border-radius: var(--radius-md);
+  background: transparent;
+  text-align: left;
+  transition: background-color var(--transition);
+}
+
+.template-item:hover {
+  background: var(--color-surface-hover);
+}
+
+.template-item.is-selected {
+  background: var(--color-accent-soft);
+}
+
+.template-item__name {
+  overflow: hidden;
+  font-weight: var(--font-weight-medium);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.template-item__subject {
+  overflow: hidden;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.template-item.is-selected .template-item__name {
+  color: var(--color-accent);
+}
+
+/* Send */
+.send-form__toggle {
+  align-self: flex-start;
+  height: 28px;
+  margin: calc(-1 * var(--space-2)) 0 0 calc(-1 * var(--space-2));
+  padding: 0 var(--space-2);
+  font-size: var(--font-size-md);
+}
+
+.send-form__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.preview {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-subtle);
+}
+
+.preview__label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+}
+
+.preview__subject {
+  font-weight: var(--font-weight-semibold);
+}
+
+.preview__body,
+.preview__signature {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.preview__signature {
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+
+.preview__missing {
+  padding: 0 2px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  color: var(--color-warning);
+  background: var(--color-warning-soft);
+}
+
+.shortcut-hint {
+  font-size: var(--font-size-sm);
+}
+
+/* Templates */
+.unsaved {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.unsaved::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-warning);
+}
+
+/* History */
+.history {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.history__search {
+  flex: 1;
+  max-width: 420px;
+}
+
+.history__filter {
+  width: 160px;
+}
+
+.table-wrap {
+  overflow: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+/* Fixed layout: long cells are truncated instead of widening the table. */
+.table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  font-size: var(--font-size-md);
+}
+
+.table__col-date {
+  width: 136px;
+}
+
+.table__col-template {
+  width: 20%;
+}
+
+.table__col-status {
+  width: 168px;
+}
+
+.table__col-actions {
+  width: 56px;
+}
+
+.table th {
+  position: sticky;
+  top: 0;
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg-subtle);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+  text-align: left;
+}
+
+.table td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: middle;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.table tbody tr:hover {
+  background: var(--color-surface-hover);
+}
+
+.table__date {
+  white-space: nowrap;
+  color: var(--color-text-muted);
+}
+
+.table__to,
+.table__template,
+.table__subject {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Long SMTP errors are clamped to two lines; the full text is in the tooltip. */
+.table__error {
+  display: -webkit-box;
+  margin-top: 2px;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: var(--font-size-sm);
+  line-height: 1.35;
+  color: var(--color-danger);
+}
+
+.table__error:empty {
+  display: none;
+}
+
+.table__actions {
+  text-align: right;
+}
+
+/* Settings */
+.settings {
+  max-width: 720px;
+}

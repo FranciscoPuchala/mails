@@ -1,0 +1,27 @@
+{
+  "name": "mailrapido",
+  "productName": "MailRapido",
+  "version": "1.0.0",
+  "description": "Envío rápido de mails personalizados a partir de plantillas",
+  "main": "src/main/main.js",
+  "author": "Francisco Puchala",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "nodemailer": "^10.0.13"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "electron": "^44.5.1",
+    "electron-builder": "^26.15.3",
+    "eslint": "^10.11.0",
+    "globals": "^17.13.0",
+    "prettier": "^3.9.9"
+  }
+}

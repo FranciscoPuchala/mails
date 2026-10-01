@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MailRápido</title>
+    <link rel="stylesheet" href="styles/variables.css" />
+    <link rel="stylesheet" href="styles/base.css" />
+    <link rel="stylesheet" href="styles/icons.css" />
+    <link rel="stylesheet" href="styles/layout.css" />
+    <link rel="stylesheet" href="styles/components.css" />
+    <link rel="stylesheet" href="styles/forms.css" />
+    <link rel="stylesheet" href="styles/feedback.css" />
+    <link rel="stylesheet" href="styles/views.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <span class="brand__mark"><span class="icon icon--logo"></span></span>
+          MailRápido
+        </div>
+
+        <nav class="nav" aria-label="Secciones">
+          <button class="nav__item" type="button" data-nav="send">
+            <span class="icon icon--send"></span>Enviar
+          </button>
+          <button class="nav__item" type="button" data-nav="templates">
+            <span class="icon icon--templates"></span>Plantillas
+          </button>
+          <button class="nav__item" type="button" data-nav="history">
+            <span class="icon icon--history"></span>Historial
+          </button>
+          <button class="nav__item" type="button" data-nav="settings">
+            <span class="icon icon--settings"></span>Configuración
+          </button>
+        </nav>
+
+        <p class="sidebar__footer">
+          <kbd data-mod-key>Ctrl</kbd> + <kbd>1</kbd>–<kbd>4</kbd> para navegar
+        </p>
+      </aside>
+
+      <main class="content" id="views"></main>
+    </div>
+
+    <div class="toasts" id="toasts" aria-live="polite"></div>
+
+    <dialog class="modal" id="confirm-dialog" aria-labelledby="confirm-title">
+      <div class="modal__body">
+        <h2 id="confirm-title"></h2>
+        <p class="modal__message" id="confirm-message"></p>
+      </div>
+      <div class="modal__footer">
+        <button class="btn" type="button" data-dialog-action="cancel">Cancelar</button>
+        <button class="btn btn--danger-solid" type="button" data-dialog-action="confirm"></button>
+      </div>
+    </dialog>
+
+    <template id="tpl-toast">
+      <div class="toast" role="status">
+        <span class="icon toast__icon"></span>
+        <p class="toast__message"></p>
+        <button class="btn btn--ghost btn--icon toast__close" type="button" aria-label="Cerrar">
+          <span class="icon icon--close"></span>
+        </button>
+      </div>
+    </template>
+
+    <template id="tpl-template-item">
+      <li>
+        <button class="template-item" type="button">
+          <span class="template-item__name"></span>
+          <span class="template-item__subject"></span>
+        </button>
+      </li>
+    </template>
+
+    <template id="tpl-chip">
+      <span class="chip"></span>
+    </template>
+
+    <script type="module" src="scripts/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,88 @@
+<section class="view" data-view="history" aria-labelledby="history-title" hidden>
+  <header class="view__header">
+    <div>
+      <h1 id="history-title">Historial</h1>
+      <p class="view__subtitle">Todo lo que enviaste, con su resultado</p>
+    </div>
+    <div class="view__actions">
+      <button class="btn btn--danger" id="history-clear" type="button">
+        <span class="icon icon--trash"></span>Limpiar historial
+      </button>
+    </div>
+  </header>
+
+  <div class="view__body">
+    <div class="history">
+      <div class="row history__toolbar">
+        <label class="search history__search">
+          <span class="icon icon--search"></span>
+          <span class="visually-hidden">Buscar en el historial</span>
+          <input
+            class="input"
+            id="history-search"
+            type="search"
+            placeholder="Buscar por destinatario, plantilla o asunto"
+          />
+        </label>
+        <label class="visually-hidden" for="history-filter">Filtrar por estado</label>
+        <select class="select history__filter" id="history-filter">
+          <option value="all">Todos</option>
+          <option value="sent">Enviados</option>
+          <option value="error">Con error</option>
+        </select>
+      </div>
+
+      <div class="table-wrap" id="history-table">
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="table__col-date" scope="col">Fecha</th>
+              <th scope="col">Destinatario</th>
+              <th class="table__col-template" scope="col">Plantilla</th>
+              <th scope="col">Asunto</th>
+              <th class="table__col-status" scope="col">Estado</th>
+              <th class="table__col-actions" scope="col">
+                <span class="visually-hidden">Acciones</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody id="history-rows"></tbody>
+        </table>
+      </div>
+
+      <div class="empty" id="history-empty" hidden>
+        <span class="icon icon--xl icon--history"></span>
+        <p class="empty__title">Todavía no enviaste ningún mail</p>
+        <p>Cuando envíes uno, va a aparecer acá.</p>
+      </div>
+
+      <p class="empty empty--compact" id="history-no-results" hidden>
+        No hay envíos que coincidan con la búsqueda.
+      </p>
+    </div>
+  </div>
+
+  <template id="tpl-history-row">
+    <tr>
+      <td class="table__date"></td>
+      <td class="table__to selectable"></td>
+      <td class="table__template"></td>
+      <td class="table__subject selectable"></td>
+      <td class="table__status">
+        <span class="badge"></span>
+        <p class="table__error selectable"></p>
+      </td>
+      <td class="table__actions">
+        <button
+          class="btn btn--ghost btn--icon"
+          type="button"
+          data-action="resend"
+          title="Reenviar"
+          aria-label="Reenviar"
+        >
+          <span class="icon icon--resend"></span>
+        </button>
+      </td>
+    </tr>
+  </template>
+</section>

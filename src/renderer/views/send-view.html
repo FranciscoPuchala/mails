@@ -1,0 +1,132 @@
+<section class="view" data-view="send" aria-labelledby="send-title" hidden>
+  <header class="view__header">
+    <div>
+      <h1 id="send-title">Enviar</h1>
+      <p class="view__subtitle">Elegí una plantilla, escribí el destinatario y listo</p>
+    </div>
+  </header>
+
+  <div class="view__body view__body--flush">
+    <div class="split">
+      <div class="split__list">
+        <div class="list-toolbar">
+          <label class="search">
+            <span class="icon icon--search"></span>
+            <span class="visually-hidden">Buscar plantilla</span>
+            <input class="input" id="send-search" type="search" placeholder="Buscar plantilla" />
+          </label>
+        </div>
+        <ul class="template-list" id="send-template-list" aria-label="Plantillas"></ul>
+        <p class="empty empty--compact" id="send-list-empty" hidden>Ninguna plantilla coincide</p>
+      </div>
+
+      <div class="split__detail">
+        <div class="stack">
+          <div class="banner banner--warning" id="send-config-banner" hidden>
+            <span class="icon icon--warning"></span>
+            <p class="banner__text">Todavía no configuraste tu cuenta de correo.</p>
+            <button class="btn" type="button" data-go-to="settings">Ir a Configuración</button>
+          </div>
+
+          <div class="empty" id="send-no-templates" hidden>
+            <span class="icon icon--xl icon--inbox"></span>
+            <p class="empty__title">Todavía no tenés plantillas</p>
+            <p>Creá la primera y después mandala en segundos desde acá.</p>
+            <button class="btn btn--primary" type="button" data-go-to="templates">
+              <span class="icon icon--plus"></span>Crear plantilla
+            </button>
+          </div>
+
+          <div class="empty" id="send-pick-template" hidden>
+            <span class="icon icon--xl icon--templates"></span>
+            <p class="empty__title">Elegí una plantilla</p>
+            <p>Seleccioná una plantilla de la lista para empezar.</p>
+          </div>
+
+          <form class="card send-form" id="send-form" novalidate hidden>
+            <div class="card__header">
+              <span class="field__hint">Plantilla</span>
+              <h2 id="send-template-name"></h2>
+            </div>
+
+            <div class="field" data-field="to">
+              <label class="field__label" for="send-to">Para</label>
+              <input
+                class="input"
+                id="send-to"
+                type="text"
+                list="recent-recipients"
+                autocomplete="off"
+                spellcheck="false"
+                placeholder="nombre@ejemplo.com, otra@ejemplo.com"
+              />
+              <p class="field__error">Revisá los mails: hay alguno con formato inválido.</p>
+            </div>
+
+            <button class="btn btn--ghost send-form__toggle" id="send-toggle-cc" type="button">
+              <span class="icon icon--plus"></span>Agregar CC/CCO
+            </button>
+
+            <div class="field-grid" id="send-cc-fields" hidden>
+              <div class="field" data-field="cc">
+                <label class="field__label" for="send-cc">CC</label>
+                <input
+                  class="input"
+                  id="send-cc"
+                  type="text"
+                  autocomplete="off"
+                  spellcheck="false"
+                />
+                <p class="field__error">Formato de mail inválido.</p>
+              </div>
+              <div class="field" data-field="bcc">
+                <label class="field__label" for="send-bcc">CCO</label>
+                <input
+                  class="input"
+                  id="send-bcc"
+                  type="text"
+                  autocomplete="off"
+                  spellcheck="false"
+                />
+                <p class="field__error">Formato de mail inválido.</p>
+              </div>
+            </div>
+
+            <div class="send-form__section" id="send-variables-section" hidden>
+              <h3>Variables</h3>
+              <div class="field-grid" id="send-variables"></div>
+            </div>
+
+            <div class="preview" aria-label="Vista previa">
+              <p class="preview__label">Vista previa</p>
+              <p class="preview__subject selectable" id="send-preview-subject"></p>
+              <div class="preview__body selectable" id="send-preview-body"></div>
+              <div class="preview__signature selectable" id="send-preview-signature" hidden></div>
+            </div>
+
+            <div class="row row--between">
+              <span class="text-muted shortcut-hint">
+                <kbd data-mod-key>Ctrl</kbd> + <kbd>Enter</kbd> para enviar
+              </span>
+              <button class="btn btn--primary btn--lg" id="send-submit" type="button" disabled>
+                <span class="icon icon--send btn__icon"></span>
+                <span class="icon icon--spinner btn__spinner"></span>
+                <span class="btn__label">Enviar</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <datalist id="recent-recipients"></datalist>
+
+  <template id="tpl-variable-field">
+    <div class="field">
+      <label class="field__label"></label>
+      <input class="input" type="text" autocomplete="off" />
+      <p class="field__error">Completá este campo.</p>
+    </div>
+  </template>
+</section>

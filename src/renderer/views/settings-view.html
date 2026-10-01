@@ -1,0 +1,177 @@
+<section class="view" data-view="settings" aria-labelledby="settings-title" hidden>
+  <header class="view__header">
+    <div>
+      <h1 id="settings-title">Configuración</h1>
+      <p class="view__subtitle">Tu cuenta de correo y preferencias</p>
+    </div>
+  </header>
+
+  <div class="view__body">
+    <form class="stack settings" id="settings-form" novalidate>
+      <section class="card">
+        <div class="card__header">
+          <h2>Cuenta de correo</h2>
+          <p class="text-muted">Los mails salen desde tu propia cuenta.</p>
+        </div>
+
+        <div class="field">
+          <span class="field__label">Proveedor</span>
+          <div class="segmented" role="radiogroup" aria-label="Proveedor">
+            <label class="segmented__option">
+              <input type="radio" name="provider" value="gmail" checked /><span>Gmail</span>
+            </label>
+            <label class="segmented__option">
+              <input type="radio" name="provider" value="smtp" /><span>SMTP personalizado</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="banner banner--info" id="settings-gmail-help">
+          <span class="icon icon--info"></span>
+          <p class="banner__text">
+            Gmail exige tener activada la <strong>verificación en 2 pasos</strong> y usar una
+            <strong>contraseña de aplicación</strong>, no tu contraseña normal. Creala en Cuenta de
+            Google → Seguridad → Contraseñas de aplicaciones.
+          </p>
+        </div>
+
+        <div class="field-grid field-grid--3" id="settings-smtp-fields" hidden>
+          <div class="field" data-field="host">
+            <label class="field__label" for="settings-host">Servidor SMTP</label>
+            <input
+              class="input"
+              id="settings-host"
+              type="text"
+              spellcheck="false"
+              placeholder="smtp.ejemplo.com"
+            />
+            <p class="field__error">Indicá el servidor.</p>
+          </div>
+          <div class="field" data-field="port">
+            <label class="field__label" for="settings-port">Puerto</label>
+            <input
+              class="input"
+              id="settings-port"
+              type="number"
+              min="1"
+              max="65535"
+              placeholder="465"
+            />
+            <p class="field__error">Puerto inválido.</p>
+          </div>
+          <div class="field">
+            <label class="field__label" for="settings-security">Seguridad</label>
+            <select class="select" id="settings-security">
+              <option value="ssl">SSL/TLS</option>
+              <option value="starttls">STARTTLS</option>
+              <option value="none">Ninguna</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field-grid">
+          <div class="field" data-field="fromName">
+            <label class="field__label" for="settings-from-name">Nombre visible</label>
+            <input
+              class="input"
+              id="settings-from-name"
+              type="text"
+              maxlength="100"
+              placeholder="Francisco"
+            />
+            <p class="field__error">Nombre demasiado largo.</p>
+          </div>
+          <div class="field" data-field="fromEmail">
+            <label class="field__label" for="settings-from-email">Mail remitente</label>
+            <input
+              class="input"
+              id="settings-from-email"
+              type="email"
+              spellcheck="false"
+              placeholder="vos@gmail.com"
+            />
+            <p class="field__error">Ingresá un mail válido.</p>
+          </div>
+        </div>
+
+        <div class="field" data-field="username" id="settings-username-field" hidden>
+          <label class="field__label" for="settings-username">Usuario SMTP</label>
+          <input
+            class="input"
+            id="settings-username"
+            type="text"
+            spellcheck="false"
+            autocomplete="off"
+          />
+          <p class="field__hint">Dejalo vacío si es el mismo que el mail remitente.</p>
+        </div>
+
+        <div class="field" data-field="password">
+          <label class="field__label" id="settings-password-label" for="settings-password">
+            Contraseña de aplicación
+          </label>
+          <input
+            class="input"
+            id="settings-password"
+            type="password"
+            autocomplete="new-password"
+            spellcheck="false"
+          />
+          <p class="field__hint" id="settings-password-status"></p>
+          <p class="field__error">Ingresá la contraseña.</p>
+        </div>
+
+        <div class="row">
+          <button class="btn" id="settings-verify" type="button">
+            <span class="icon icon--success btn__icon"></span>
+            <span class="icon icon--spinner btn__spinner"></span>Probar conexión
+          </button>
+          <button class="btn" id="settings-send-test" type="button">
+            <span class="icon icon--send btn__icon"></span>
+            <span class="icon icon--spinner btn__spinner"></span>Enviarme un mail de prueba
+          </button>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card__header">
+          <h2>Firma</h2>
+          <p class="text-muted">Se agrega automáticamente al final de cada mail.</p>
+        </div>
+        <div class="field" data-field="signature">
+          <label class="visually-hidden" for="settings-signature">Firma</label>
+          <textarea
+            class="textarea"
+            id="settings-signature"
+            rows="4"
+            maxlength="2000"
+            placeholder="Francisco&#10;Tel. 11 1234-5678"
+          ></textarea>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card__header">
+          <h2>Apariencia</h2>
+          <p class="text-muted">Por defecto sigue el tema del sistema.</p>
+        </div>
+        <div class="segmented" role="radiogroup" aria-label="Tema">
+          <label class="segmented__option">
+            <input type="radio" name="theme" value="system" checked /><span>Sistema</span>
+          </label>
+          <label class="segmented__option">
+            <input type="radio" name="theme" value="light" /><span>Claro</span>
+          </label>
+          <label class="segmented__option">
+            <input type="radio" name="theme" value="dark" /><span>Oscuro</span>
+          </label>
+        </div>
+      </section>
+
+      <div class="row row--end">
+        <span class="text-muted shortcut-hint"><kbd data-mod-key>Ctrl</kbd> + <kbd>S</kbd></span>
+        <button class="btn btn--primary" id="settings-save" type="submit">Guardar cambios</button>
+      </div>
+    </form>
+  </div>
+</section>
