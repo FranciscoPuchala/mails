@@ -1,6 +1,7 @@
-import { $, setFieldInvalid, setButtonLoading } from '../utils/dom.js';
+import { $, setFieldInvalid, setButtonLoading, formatDateTime } from '../utils/dom.js';
 import { isShortcut } from '../utils/keyboard.js';
 import { showToast } from '../components/toast.js';
+import { confirmDialog } from '../components/modal.js';
 import { createTemplateList } from '../components/template-list.js';
 import { createVariableFields } from '../components/variable-fields.js';
 import { createMailPreview } from '../components/mail-preview.js';
@@ -127,12 +128,50 @@ export function createSendView(root) {
     );
   }
 
+  /** Typed recipients that already got the selected template, with their latest send date. */
+  async function findPreviousRecipients() {
+    const history = await api.history.list();
+    const lastSentAt = new Map();
+    // History is stored newest first, so the first match is the latest send.
+    for (const entry of history) {
+      if (entry.status !== 'sent' || entry.templateId !== selected.id) continue;
+      for (const email of [...entry.to, ...entry.cc, ...entry.bcc]) {
+        const key = email.toLowerCase();
+        if (!lastSentAt.has(key)) lastSentAt.set(key, entry.sentAt);
+      }
+    }
+
+    const typed = Object.values(recipients).flatMap((input) => splitEmailList(input.value));
+    const unique = [...new Map(typed.map((email) => [email.toLowerCase(), email])).values()];
+    return unique
+      .filter((email) => lastSentAt.has(email.toLowerCase()))
+      .map((email) => ({ email, sentAt: lastSentAt.get(email.toLowerCase()) }));
+  }
+
+  /** Resolves true when nobody got this template yet or the user chooses to send anyway. */
+  async function confirmRepeatedSend() {
+    const previous = await findPreviousRecipients();
+    if (previous.length === 0) return true;
+
+    const detail = previous
+      .map(({ email, sentAt }) => `${email} (${formatDateTime(sentAt)})`)
+      .join(', ');
+    return confirmDialog({
+      title: 'Ya se envió esta plantilla',
+      message: `La plantilla "${selected.name}" ya se envió a: ${detail}. ¿Querés enviarla igual?`,
+      confirmLabel: 'Enviar igual',
+    });
+  }
+
   async function send() {
     if (!selected || isSending || !revealErrors()) return;
 
+    // Set before the dialog opens so Ctrl+Enter can't start a second send behind it.
     isSending = true;
-    setButtonLoading(submitButton, true);
     try {
+      if (!(await confirmRepeatedSend())) return;
+
+      setButtonLoading(submitButton, true);
       const result = await api.mail.send({
         templateId: selected.id,
         to: recipients.to.value,
